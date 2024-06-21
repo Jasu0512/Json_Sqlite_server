@@ -1,5 +1,3 @@
-
-
 import { Database } from "bun:sqlite";
 const db = new Database("dbTest.sqlite", { create: true });
 const query = db.query(`CREATE TABLE IF NOT EXISTS Test(
@@ -7,15 +5,8 @@ const query = db.query(`CREATE TABLE IF NOT EXISTS Test(
    Name CHAR(30),
    Age INTEGER
 );`).run();
-/* const queryInstert= db.prepare(`INSERT INTO Test (Name , age ) VALUES($Name,$Age) ;`);
-const results = queryInstert.all({ $Name: name,$Age:age });
 
-const queryDisplay=db.query("SELECT * FROM Test").all();
 
-console.log(queryDisplay); */
-function generateUniqueUserId(): number {
-    return ((new Date().getTime())%100);
-}
 const server = Bun.serve({
     port: 3000,
 async    fetch(request) {
@@ -64,7 +55,7 @@ async    fetch(request) {
           
           const incomingData = await request.json();
           const userDataWithId = {
-            //id: generateUniqueUserId(),
+            
             ...incomingData
             
           };
